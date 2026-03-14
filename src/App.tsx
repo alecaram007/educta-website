@@ -19,6 +19,8 @@ import {
   CircleHelp,
   PhoneCall,
   MessageCircle,
+  Sun,
+  Moon,
 } from 'lucide-react'
 import './App.css'
 
@@ -52,12 +54,20 @@ const SUPPORT_WHATSAPP_MESSAGE = encodeURIComponent('Ciao Alessandro, vorrei inf
 const normalizeDigits = (value: string) => value.replace(/[^\d+]/g, '')
 
 type CookieConsentChoice = 'accept_all' | 'reject_optional'
+type ThemeMode = 'dark' | 'light'
 
 const readStoredConsent = (): CookieConsentChoice | null => {
   if (typeof window === 'undefined') return null
   const stored = localStorage.getItem('educta_cookie_consent')
   if (stored === 'accept_all' || stored === 'reject_optional') return stored
   return null
+}
+
+const readStoredTheme = (): ThemeMode => {
+  if (typeof window === 'undefined') return 'dark'
+  const stored = localStorage.getItem('educta_theme')
+  if (stored === 'light' || stored === 'dark') return stored
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
 }
 
 function CookieBanner() {
@@ -102,6 +112,7 @@ function CookieBanner() {
 function App() {
   const [legalModal, setLegalModal] = useState<{ title: string; url: string } | null>(null)
   const [helpOpen, setHelpOpen] = useState(false)
+  const [theme, setTheme] = useState<ThemeMode>(readStoredTheme)
   const [futureInputs, setFutureInputs] = useState({
     staff: 8,
     courses: 16,
@@ -133,6 +144,11 @@ function App() {
       document.body.style.overflow = previousOverflow
     }
   }, [legalModal])
+
+  useEffect(() => {
+    document.body.classList.toggle('theme-light', theme === 'light')
+    localStorage.setItem('educta_theme', theme)
+  }, [theme])
 
   const openLegalModal = (title: string, url: string) => (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
@@ -168,6 +184,15 @@ function App() {
           <a className="nav-link" href="#future-lab" onClick={scrollToSection('#future-lab')}>Future Lab</a>
           <a className="nav-link" href="#faq" onClick={scrollToSection('#faq')}>FAQ</a>
           <a className="nav-link" href="#contatti" onClick={scrollToSection('#contatti')}>Contatti</a>
+          <button
+            type="button"
+            className="theme-toggle"
+            onClick={() => setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))}
+            aria-label={theme === 'dark' ? 'Attiva tema chiaro' : 'Attiva tema scuro'}
+          >
+            {theme === 'dark' ? <Sun size={15} /> : <Moon size={15} />}
+            <span>{theme === 'dark' ? 'Chiaro' : 'Scuro'}</span>
+          </button>
           <a className="cta-mini" href={GESTIONALE_URL} target="_blank" rel="noreferrer">Accedi al gestionale</a>
         </nav>
       </header>
