@@ -43,9 +43,11 @@ const automationItems = [
   'Anagrafiche corsisti centralizzate',
 ]
 
-const SUPPORT_EMAIL = 'info@eductasolutions.com'
-const SUPPORT_PHONE = (import.meta.env.VITE_SUPPORT_PHONE ?? '').trim()
-const SUPPORT_WHATSAPP = (import.meta.env.VITE_SUPPORT_WHATSAPP ?? '').trim()
+const GESTIONALE_URL = 'https://gestionale-52fo.onrender.com/'
+const SUPPORT_EMAIL = (import.meta.env.VITE_SUPPORT_EMAIL ?? 'alessandroocaramazzaa@gmail.com').trim()
+const SUPPORT_PHONE = (import.meta.env.VITE_SUPPORT_PHONE ?? '+393519006821').trim()
+const SUPPORT_WHATSAPP = (import.meta.env.VITE_SUPPORT_WHATSAPP ?? '393519006821').trim()
+const SUPPORT_WHATSAPP_MESSAGE = encodeURIComponent('Ciao Alessandro, vorrei informazioni sul gestionale.')
 
 const normalizeDigits = (value: string) => value.replace(/[^\d+]/g, '')
 
@@ -166,7 +168,7 @@ function App() {
           <a className="nav-link" href="#future-lab" onClick={scrollToSection('#future-lab')}>Future Lab</a>
           <a className="nav-link" href="#faq" onClick={scrollToSection('#faq')}>FAQ</a>
           <a className="nav-link" href="#contatti" onClick={scrollToSection('#contatti')}>Contatti</a>
-          <a className="cta-mini" href="https://gestionale.eductasolutions.com">Accedi al gestionale</a>
+          <a className="cta-mini" href={GESTIONALE_URL} target="_blank" rel="noreferrer">Accedi al gestionale</a>
         </nav>
       </header>
 
@@ -184,7 +186,7 @@ function App() {
           </motion.p>
           <motion.div variants={fadeUp} className="hero-actions">
             <a className="btn primary" href="#contatti">Prenota demo <ArrowRight size={16} /></a>
-            <a className="btn ghost" href="https://gestionale.eductasolutions.com"><Play size={16} /> Apri il gestionale</a>
+            <a className="btn ghost" href={GESTIONALE_URL} target="_blank" rel="noreferrer"><Play size={16} /> Apri il gestionale</a>
           </motion.div>
 
           <motion.div variants={fadeUp} className="impact-row">
@@ -433,11 +435,13 @@ function App() {
           Ti mostriamo il flusso reale sul tuo caso: corsi, ruoli, presenze, valutazioni, documenti e import.
         </motion.p>
         <motion.div className="contact-row" initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <a className="btn ghost" href="mailto:info@eductasolutions.com"><Mail size={16} /> info@eductasolutions.com</a>
+          <a className="btn ghost" href={`mailto:${SUPPORT_EMAIL}`}><Mail size={16} /> {SUPPORT_EMAIL}</a>
+          <a className="btn ghost" href={`tel:${normalizeDigits(SUPPORT_PHONE)}`}><PhoneCall size={16} /> {SUPPORT_PHONE}</a>
+          <a className="btn ghost" href={`https://wa.me/${normalizeDigits(SUPPORT_WHATSAPP).replace('+', '')}?text=${SUPPORT_WHATSAPP_MESSAGE}`} target="_blank" rel="noreferrer"><MessageCircle size={16} /> WhatsApp</a>
         </motion.div>
         <motion.form
           className="lead-form"
-          action="https://formsubmit.co/info@eductasolutions.com"
+          action={`https://formsubmit.co/${SUPPORT_EMAIL}`}
           method="POST"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -512,9 +516,9 @@ function App() {
                 className="support-link"
                 href={
                   SUPPORT_WHATSAPP
-                    ? `https://wa.me/${normalizeDigits(SUPPORT_WHATSAPP).replace('+', '')}?text=${encodeURIComponent('Ciao, vorrei maggiori informazioni su Educta Solutions.')}`
+                    ? `https://wa.me/${normalizeDigits(SUPPORT_WHATSAPP).replace('+', '')}?text=${SUPPORT_WHATSAPP_MESSAGE}`
                     : SUPPORT_PHONE
-                      ? `https://wa.me/${normalizeDigits(SUPPORT_PHONE).replace('+', '')}?text=${encodeURIComponent('Ciao, vorrei maggiori informazioni su Educta Solutions.')}`
+                      ? `https://wa.me/${normalizeDigits(SUPPORT_PHONE).replace('+', '')}?text=${SUPPORT_WHATSAPP_MESSAGE}`
                       : '#contatti'
                 }
                 target={SUPPORT_WHATSAPP || SUPPORT_PHONE ? '_blank' : undefined}
@@ -528,7 +532,7 @@ function App() {
                 <ArrowRight size={15} />
                 <span>Form contatti</span>
               </a>
-              <a className="support-link" href={`mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent('Richiesta informazioni Educta Solutions')}`}>
+              <a className="support-link" href={`mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent('Richiesta informazioni Gestionale')}`}>
                 <Mail size={15} />
                 <span>Email</span>
               </a>
