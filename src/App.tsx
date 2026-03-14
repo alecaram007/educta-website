@@ -146,8 +146,16 @@ function App() {
   }, [legalModal])
 
   useEffect(() => {
-    document.body.classList.toggle('theme-light', theme === 'light')
+    const body = document.body
+    body.classList.add('theme-transition')
+    body.classList.toggle('theme-light', theme === 'light')
     localStorage.setItem('educta_theme', theme)
+
+    const timeout = window.setTimeout(() => {
+      body.classList.remove('theme-transition')
+    }, 420)
+
+    return () => window.clearTimeout(timeout)
   }, [theme])
 
   const openLegalModal = (title: string, url: string) => (e: MouseEvent<HTMLAnchorElement>) => {
@@ -186,12 +194,19 @@ function App() {
           <a className="nav-link" href="#contatti" onClick={scrollToSection('#contatti')}>Contatti</a>
           <button
             type="button"
-            className="theme-toggle"
+            className={`theme-toggle ${theme === 'light' ? 'is-light' : 'is-dark'}`}
             onClick={() => setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))}
             aria-label={theme === 'dark' ? 'Attiva tema chiaro' : 'Attiva tema scuro'}
+            aria-pressed={theme === 'light'}
           >
-            {theme === 'dark' ? <Sun size={15} /> : <Moon size={15} />}
-            <span>{theme === 'dark' ? 'Chiaro' : 'Scuro'}</span>
+            <span className="theme-toggle-track" aria-hidden="true">
+              <Sun size={13} className="theme-icon sun" />
+              <Moon size={13} className="theme-icon moon" />
+              <span className="theme-toggle-thumb">
+                {theme === 'dark' ? <Moon size={13} /> : <Sun size={13} />}
+              </span>
+            </span>
+            <span className="sr-only">{theme === 'dark' ? 'Attiva tema chiaro' : 'Attiva tema scuro'}</span>
           </button>
           <a className="cta-mini" href={GESTIONALE_URL} target="_blank" rel="noreferrer">Accedi al gestionale</a>
         </nav>
