@@ -199,14 +199,16 @@ function App() {
             aria-label={theme === 'dark' ? 'Attiva tema chiaro' : 'Attiva tema scuro'}
             aria-pressed={theme === 'light'}
           >
-            <span className="theme-toggle-track" aria-hidden="true">
-              <Sun size={13} className="theme-icon sun" />
-              <Moon size={13} className="theme-icon moon" />
-              <span className="theme-toggle-thumb">
-                {theme === 'dark' ? <Moon size={13} /> : <Sun size={13} />}
-              </span>
-            </span>
-            <span className="sr-only">{theme === 'dark' ? 'Attiva tema chiaro' : 'Attiva tema scuro'}</span>
+            <motion.span
+              key={theme}
+              className="theme-toggle-icon"
+              initial={{ rotate: -90, scale: 0.7, opacity: 0 }}
+              animate={{ rotate: 0, scale: 1, opacity: 1 }}
+              transition={{ duration: 0.24, ease: 'easeOut' }}
+              aria-hidden="true"
+            >
+              {theme === 'dark' ? <Moon size={16} /> : <Sun size={16} />}
+            </motion.span>
           </button>
           <a className="cta-mini" href={GESTIONALE_URL} target="_blank" rel="noreferrer">Accedi al gestionale</a>
         </nav>
