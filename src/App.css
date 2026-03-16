@@ -697,6 +697,10 @@ body.theme-light .legal-modal {
   box-shadow: 0 10px 24px rgba(87, 104, 165, .12);
 }
 
+body.theme-light .stat {
+  color: #000000;
+}
+
 body.theme-light .chip {
   color: #344054;
   background: rgba(84, 102, 200, .08);
