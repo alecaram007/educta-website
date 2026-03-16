@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Host: https://eductasolutions.onrender.com
 
-Sitemap: https://eductasolutions.com/sitemap.xml
+Sitemap: https://eductasolutions.onrender.com/sitemap.xml

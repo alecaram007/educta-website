@@ -1,0 +1,17 @@
+{
+  "name": "Educta Solutions",
+  "short_name": "Educta",
+  "description": "Sito ufficiale e gestionale per enti di formazione.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b0b14",
+  "theme_color": "#0b0b14",
+  "lang": "it-IT",
+  "icons": [
+    {
+      "src": "/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

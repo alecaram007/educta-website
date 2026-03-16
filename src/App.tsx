@@ -187,6 +187,7 @@ function App() {
         </motion.div>
         <nav className="nav-links">
           <a className="nav-link" href="#chi-siamo" onClick={scrollToSection('#chi-siamo')}>Chi siamo</a>
+          <a className="nav-link" href="#perche-educta" onClick={scrollToSection('#perche-educta')}>Perché Educta</a>
           <a className="nav-link" href="#soluzioni" onClick={scrollToSection('#soluzioni')}>Soluzioni</a>
           <a className="nav-link" href="#funzioni" onClick={scrollToSection('#funzioni')}>Funzioni</a>
           <a className="nav-link" href="#future-lab" onClick={scrollToSection('#future-lab')}>Future Lab</a>
@@ -266,6 +267,32 @@ function App() {
             <span key={`${item}-${i}`} className="marquee-item"><CheckCircle2 size={14} /> {item}</span>
           ))}
         </motion.div>
+      </section>
+
+      <section id="perche-educta" className="section full brand-proof">
+        <motion.h2 initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          Educta Solutions: il sito ufficiale per enti di formazione
+        </motion.h2>
+        <motion.p initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          Se cerchi Educta Solutions trovi qui il riferimento ufficiale: prodotto, contatti e accesso diretto al gestionale.
+          La piattaforma copre gestione corsi, anagrafiche corsisti, docenti, tutor, presenze, valutazioni e audit.
+        </motion.p>
+        <div className="brand-proof-grid">
+          <motion.article initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <h3>Software verticale per formazione</h3>
+            <p>Un unico gestionale per processi FSE e privati, con controllo operativo end-to-end.</p>
+          </motion.article>
+          <motion.article initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.06 }} viewport={{ once: true }}>
+            <h3>Riferimenti ufficiali Educta</h3>
+            <p>Email: {SUPPORT_EMAIL}</p>
+            <p>Telefono e WhatsApp: {SUPPORT_PHONE}</p>
+          </motion.article>
+          <motion.article initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.12 }} viewport={{ once: true }}>
+            <h3>Accesso rapido al prodotto</h3>
+            <p>Apri subito il gestionale cloud per demo e test operativi.</p>
+            <a className="inline-link" href={GESTIONALE_URL} target="_blank" rel="noreferrer">Vai al gestionale Educta</a>
+          </motion.article>
+        </div>
       </section>
 
       <section id="soluzioni" className="section full">
