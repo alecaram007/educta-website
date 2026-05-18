@@ -71,3 +71,11 @@ export default defineConfig([
   },
 ])
 ```
+
+## Author
+
+Built and maintained by **[Alessandro Caramazza](https://alessandrocaramazza.it)** — informatico in Sicilia. Software su misura, automazioni, gestionali e bot per PMI.
+
+- 🌐 [alessandrocaramazza.it](https://alessandrocaramazza.it)
+- 💬 [WhatsApp](https://wa.me/393519006821)
+- 📧 [alessandro.caramazza@gmail.com](mailto:alessandro.caramazza@gmail.com)
